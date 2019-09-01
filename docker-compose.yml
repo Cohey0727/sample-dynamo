@@ -1,0 +1,45 @@
+version: "3"
+services:
+  dynamo:
+    container_name: sample-dynamo
+    image: amazon/dynamodb-local
+    command: -jar DynamoDBLocal.jar -inMemory
+
+  db:
+    container_name: sample-mysql
+    ports:
+      - 53306:3306
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - .:/app
+    restart: always
+    environment:
+      MYSQL_USER: sample
+      MYSQL_PASSWORD: sample
+      MYSQL_DATABASE: sample
+      MYSQL_ROOT_PASSWORD: sample
+
+  api:
+    container_name: sample-api-django
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "./wait-for-it.sh db:3306; python3 manage.py runserver 0.0.0.0:8080"
+    env_file: .env
+    ports:
+      - 58080:8080
+    depends_on:
+      - db
+      - dynamo
+
+  dynamo-admin:
+    container_name: sample-dynamo-admin
+    build: dynamo-admin/
+    command: dynamodb-admin -p 50727
+    env_file: dynamo-admin/.env
+    ports:
+      - 50727:50727
+    depends_on:
+      - dynamo
