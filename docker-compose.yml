@@ -4,6 +4,8 @@ services:
     container_name: sample-dynamo
     image: amazon/dynamodb-local
     command: -jar DynamoDBLocal.jar -inMemory
+    ports:
+      - 50706:8000
 
   db:
     container_name: sample-mysql
