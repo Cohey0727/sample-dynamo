@@ -3,7 +3,9 @@ services:
   dynamo:
     container_name: sample-dynamo
     image: amazon/dynamodb-local
-    command: -jar DynamoDBLocal.jar -inMemory
+    command: -jar DynamoDBLocal.jar -dbPath /home/dynamodblocal/data
+    volumes:
+      - ./db:/home/dynamodblocal/data
 
   db:
     container_name: sample-mysql
@@ -43,3 +45,4 @@ services:
       - 50727:50727
     depends_on:
       - dynamo
+
