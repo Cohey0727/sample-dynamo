@@ -131,3 +131,10 @@ README.rst
 
 # Mac
 .DS_Store
+
+# docker volume
+db/*
+
+# ignore gitkeep
+!.gitkeep
+
