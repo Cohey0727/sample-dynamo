@@ -133,7 +133,7 @@ README.rst
 .DS_Store
 
 # docker volume
-db/*
+persist/*
 
 # ignore gitkeep
 !.gitkeep
