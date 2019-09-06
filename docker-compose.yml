@@ -5,7 +5,7 @@ services:
     image: amazon/dynamodb-local
     command: -jar DynamoDBLocal.jar -dbPath /home/dynamodblocal/data
     volumes:
-      - ./db:/home/dynamodblocal/data
+      - ./persist/dynamodb:/home/dynamodblocal/data
     ports:
       - 50706:8000
 
@@ -16,7 +16,7 @@ services:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-      - .:/app
+      - ./persist/mysql:/var/lib/mysql
     restart: always
     environment:
       MYSQL_USER: sample
