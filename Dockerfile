@@ -1,6 +1,8 @@
 FROM python:3.7.4
 
 RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "--no-install-recommends", "apt-utils"]
+RUN ["apt-get", "install", "-y", "gettext"]
 RUN ["mkdir", "/app"]
 RUN ["mkdir", "/app/sample_dynamodb"]
 
