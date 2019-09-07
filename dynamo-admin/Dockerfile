@@ -1,6 +1,6 @@
-FROM node:10.16.3
+FROM node:10.16.3-alpine
 
-RUN ["apt-get", "-y", "update"]
+RUN ["apk", "update"]
 RUN ["npm", "install", "dynamodb-admin", "-g"]
 
 EXPOSE 50727
