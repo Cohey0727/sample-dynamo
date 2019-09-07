@@ -3,7 +3,7 @@ from django.db import migrations
 
 
 def create_table(apps, schema_editor):
-    from ..dynamo_tables import ToDoModel
+    from ..models import ToDoModel
     ToDoModel.create_table(wait=True)
 
 

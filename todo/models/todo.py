@@ -4,9 +4,9 @@ from pynamodb.attributes import UnicodeAttribute, BooleanAttribute, UTCDateTimeA
 from pynamodb.models import Model
 
 
-class ToDoModel(Model):
+class ToDo(Model):
     class Meta:
-        table_name = 'todo_table'
+        table_name = 'todo'
         region = 'ap-northeast-1'
         write_capacity_units = 1
         read_capacity_units = 1
