@@ -30,10 +30,10 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: sh -c "./wait-for-it.sh db:3306; python3 manage.py runserver 0.0.0.0:8080"
+    command: sh -c "./wait-for-it.sh db:3306; python3 manage.py runserver 0.0.0.0:8000"
     env_file: .env
     ports:
-      - 58080:8080
+      - 58080:8000
     depends_on:
       - db
       - dynamo
@@ -41,10 +41,10 @@ services:
   dynamo-admin:
     container_name: sample-dynamo-admin
     build: dynamo-admin/
-    command: dynamodb-admin -p 50727
+    command: dynamodb-admin -p 8000
     env_file: dynamo-admin/.env
     ports:
-      - 50727:50727
+      - 50727:8000
     depends_on:
       - dynamo
 
