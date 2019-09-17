@@ -3,8 +3,8 @@ from django.db import migrations
 
 
 def create_table(apps, schema_editor):
-    from ..models import ToDoModel
-    ToDoModel.create_table(wait=True)
+    from ..models import ToDo
+    ToDo.create_table(wait=True)
 
 
 class Migration(migrations.Migration):
